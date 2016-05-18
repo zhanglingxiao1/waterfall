@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{ margin: 0; padding: 0; border-size:border-box;}
+			body{ background-color: rgb(237,237,237) ;}
+			ul{ list-style: none;}
+			li{ box-shadow: 0 0 10px #625351;  width: 220px; background-color:#fff; position: absolute; height: auto;}
+			li img{ width: 100%; height: auto;}
+			
+			
+		
+			.waterfall{ margin-left: auto; margin-right:auto ; position: relative;}
+		</style>
+		<script src="jquery-2.0.2.js"></script>
+		
+	</head>
+	<body>
+		<ul class="waterfall">
+			<li><img src="pic/pic1.jpg" alt="" /></li>
+			<li><img src="pic/pic2.jpg" alt="" /></li>
+			<li><img src="pic/pic3.jpg" alt="" /></li>
+			<li><img src="pic/pic4.jpg" alt="" /></li>
+			<li><img src="pic/pic5.jpg" alt="" /></li>
+			<li><img src="pic/pic6.jpg" alt="" /></li>
+			<li><img src="pic/pic7.jpg" alt="" /></li>
+			<li><img src="pic/pic8.jpg" alt="" /></li>
+			<li><img src="pic/pic9.jpg" alt="" /></li>
+			<li><img src="pic/pic10.jpg" alt="" /></li>
+			<li><img src="pic/pic11.jpg" alt="" /></li>
+			<li><img src="pic/pic12.jpg" alt="" /></li>
+			<li><img src="pic/pic13.jpg" alt="" /></li>
+			<li><img src="pic/pic14.jpg" alt="" /></li>
+			<li><img src="pic/pic15.jpg" alt="" /></li>
+			<li><img src="pic/pic16.jpg" alt="" /></li>
+			<li><img src="pic/pic17.jpg" alt="" /></li>
+			<li><img src="pic/pic18.jpg" alt="" /></li>
+			<li><img src="pic/pic19.jpg" alt="" /></li>
+			<li><img src="pic/pic20.jpg" alt="" /></li>
+			<li><img src="pic/pic21.jpg" alt="" /></li>
+			<li><img src="pic/pic22.jpg" alt="" /></li>
+			<li><img src="pic/pic23.jpg" alt="" /></li>
+			<li><img src="pic/pic24.jpg" alt="" /></li>
+			<li><img src="pic/pic25.jpg" alt="" /></li>
+			<li><img src="pic/pic26.jpg" alt="" /></li>
+			<li><img src="pic/pic27.jpg" alt="" /></li>
+			<li><img src="pic/pic28.jpg" alt="" /></li>
+			<li><img src="pic/pic29.jpg" alt="" /></li>
+			<li><img src="pic/pic30.jpg" alt="" /></li>
+		</ul>
+		<script type="text/javascript">
+		
+		
+	
+	$(window).load(function(){
+			waterfall();
+			})
+	
+	
+	
+	
+	
+	
+	
+	
+			function waterfall(){
+				var liw;
+				var col;
+				var points=[];
+				var $lis=$(".waterfall>li");
+				init();
+				sortPic();
+				function init(){				
+					liw=$(".waterfall>li").width();					
+					var winW=$(window).width();					
+					col=Math.floor(winW/(liw+20));
+					$(".waterfall").css("width",col*liw+(col)*20-20);
+				}
+						
+				
+			
+				function sortPic(){
+					$lis.each(function(index,elem){
+					 var pinH = $lis.eq(index).height();
+					 
+						if(index<col){
+							$(this).css("left",index*(liw+20));
+							$(this).css("top",0);
+							points.push(pinH);
+							
+						}else{							
+					var min=Math.min.apply(null,points);					
+					var ind=checkIndex(min);
+					alert("第"+ind+"列:--第"+index)
+						$(this).css("left",ind*(liw+20));
+						$(this).css("top",min+20);
+						points[ind]=parseInt($(this).innerHeight()+$(this).offset().top);
+					   
+						}
+					})//each
+				
+			}//sort pic
+			function checkIndex(min){
+					for(var i=0;i<points.length;i++){
+						if(min==points[i]){return i}
+					}
+				}	
+				
+			}//water fall 
+		
+		
+		
+		
+		</script>
+	</body>
+</html>
